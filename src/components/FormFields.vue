@@ -7,14 +7,16 @@
     </div>
     <form action="" class="form">
       
-      <input type="text" placeholder="Name" class="form__input" id="name" />
+      <input type="text" placeholder="Name" class="form__input" id="name" v-model="userName"/>
       <label for="name" class="form__label">Name</label>
 
-      <input type="email" placeholder="Email" class="form__input" id="email" />
+      <input type="email" placeholder="Email" class="form__input" id="email" v-model="userEmail"/>
       <label for="email" class="form__label">Email</label>
 
-      <input type="text" placeholder="Subject" class="form__input" id="subject" />
+      <input type="text" placeholder="Subject" class="form__input" id="subject" v-model="userSubject"/>
       <label for="subject" class="form__label">Subject</label>
+
+      <button type="submit" v-on:click="handleSUbmit" class="submit-button">Submit</button>
       
     </form>
   </div>
@@ -47,7 +49,20 @@
     export default{
         name: 'FormFields',
         data(){
-            return{}
+            return{
+                userName: '',
+                userEmail: '',
+                userSubject: '',
+            }
+        },
+
+        methods:{
+
+            handleSUbmit(event){
+                event.preventDefault();
+                console.log(this.userName, this.userEmail, this.userSubject);
+            },
+
         },
 
     }
@@ -288,6 +303,19 @@ code {
      This is crucial because if this line doesn't exist, users can
      click on the label, instead of the input field. That's bad UX! */
   pointer-events: none; 
-}    
+}   
+
+.submit-button{
+    background-color: var(--grey);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+}
+
+.submit-button:hover{
+    background-color: var(--off-white);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
 
 </style>
